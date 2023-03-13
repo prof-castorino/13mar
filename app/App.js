@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {InputNumber} from './components/TextInput/Number'
 import { StyleSheet, Text, View,TextInput,Button } from 'react-native';
 
 export default function App() {
@@ -37,25 +38,20 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>Calculadora de IMC</Text> 
-
-      <TextInput 
-        style={erroAltura? styles.error: styles.txt}
-        keyboardType='numeric'
-        placeholder='Digite seu peso'
-        maxLength={3}
-        onChangeText={p=> hasPeso(p.replace(',','.'))}
-        defaultValue={peso}
+      <InputNumber 
+        erro={erroPeso} 
+        item={peso} 
+        hasItem={hasPeso} 
+        placeholder='Digite seu peso' 
+        maxLength='3'
       />
-      <Text style={styles.txtError}>{erroPeso}</Text>     
-
-      <TextInput 
-        keyboardType='numeric'
-        placeholder='Digite sua altura'
-        maxLength={4} 
-        onChangeText={a=> hasAltura(a.replace(',','.'))}
-        defaultValue={altura}
+      <InputNumber 
+        erro={erroAltura} 
+        item={altura} 
+        hasItem={hasAltura} 
+        placeholder='Digite sua altura' 
+        maxLength='4' 
       />
-      <Text style={styles.txtError}>{erroAltura}</Text> 
 
       <Button 
       onPress={()=>{ calc() }}
